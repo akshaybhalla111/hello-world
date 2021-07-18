@@ -1,5 +1,4 @@
 <h1> Hello, Welcome to Valaxy Technologies !!! </h1>
-<h2> Deploying on Tomcat </h2>
-<h3> Deploying through CI/CD </h3>
-<h3> Deploying through github webhook2</h3>
+<h2> Deploying on Tomcat through pipeline </h2>
+
 
