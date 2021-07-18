@@ -1,0 +1,39 @@
+pipeline{
+    
+    agent any
+    
+    environment{
+        
+        PATH = "/opt/maven/bin:$PATH"
+    }
+    
+    stages{
+        
+        stage('git clone'){
+            steps{
+               git 'https://github.com/akshaybhalla111/hello-world.git'
+            }
+        }
+        
+        stage('build code'){
+            
+            steps{
+                
+                sh 'mvn clean install'
+            }
+        }
+        
+        stage('deploy code'){
+            
+            steps{
+                
+                sshagent(['deploy_user']) {
+                    
+                    sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@18.219.132.239://opt/apache-tomcat-8.5.66/webapps'
+    
+                }
+            }
+            
+        }
+    }
+}
